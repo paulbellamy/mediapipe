@@ -27,6 +27,10 @@ build:android --linkopt=-llog
 build:android --linkopt=-lm
 build:android --linkopt=-Wl,--gc-sections
 
+build:android_x86_64 --config=android
+build:android_x86_64 --cpu=x86_64
+build:android_x86_64 --fat_apk_cpu=x86_64
+
 build:android_arm --config=android
 build:android_arm --cpu=armeabi-v7a
 build:android_arm --fat_apk_cpu=armeabi-v7a
