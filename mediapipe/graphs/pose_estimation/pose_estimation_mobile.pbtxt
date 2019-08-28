@@ -1,0 +1,48 @@
+# MediaPipe graph that performs pose tracking with TensorFlow Lite on GPU.
+# Used in the examples in
+# mediapipie/examples/android/src/java/com/mediapipe/apps/posetrackinggpu and
+# mediapipie/examples/ios/posetrackinggpu.
+
+# Images coming into and out of the graph.
+input_stream: "input_video"
+output_stream: "output_video"
+
+# Throttles the images flowing downstream for flow control. It passes through
+# the very first incoming image unaltered, and waits for downstream nodes
+# (calculators and subgraphs) in the graph to finish their tasks before it
+# passes through another image. All images that come in while waiting are
+# dropped, limiting the number of in-flight images in most part of the graph to
+# 1. This prevents the downstream nodes from queuing up incoming images and data
+# excessively, which leads to increased latency and memory usage, unwanted in
+# real-time mobile applications. It also eliminates unnecessarily computation,
+# e.g., the output produced by a node may get dropped downstream if the
+# subsequent nodes are still busy processing previous inputs.
+node {
+  calculator: "FlowLimiterCalculator"
+  input_stream: "input_video"
+  input_stream: "FINISHED:pose_presence"
+  input_stream_info: {
+    tag_index: "FINISHED"
+    back_edge: true
+  }
+  output_stream: "throttled_input_video"
+}
+
+# Subgraph that localizes pose landmarks (see pose_landmark_gpu.pbtxt).
+node {
+  calculator: "PoseLandmarkSubgraph"
+  input_stream: "IMAGE:throttled_input_video"
+  output_stream: "LANDMARKS:pose_landmarks"
+  output_stream: "NORM_RECT:pose_rect_from_landmarks"
+  output_stream: "PRESENCE:pose_presence"
+}
+
+# Subgraph that renders annotations and overlays them on top of the input
+# images (see renderer_gpu.pbtxt).
+node {
+  calculator: "RendererSubgraph"
+  input_stream: "IMAGE:throttled_input_video"
+  input_stream: "NORM_RECT:pose_rect_from_landmarks"
+  input_stream: "LANDMARKS:pose_landmarks"
+  output_stream: "IMAGE:output_video"
+}

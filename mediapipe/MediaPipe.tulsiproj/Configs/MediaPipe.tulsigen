@@ -10,7 +10,8 @@
     "mediapipe/examples/ios/handdetectiongpu/BUILD",
     "mediapipe/examples/ios/handtrackinggpu/BUILD",
     "mediapipe/examples/ios/objectdetectioncpu/BUILD",
-    "mediapipe/examples/ios/objectdetectiongpu/BUILD"
+    "mediapipe/examples/ios/objectdetectiongpu/BUILD",
+    "mediapipe/examples/ios/poseestimationgpu/BUILD"
   ],
   "buildTargets" : [
     "//mediapipe/examples/ios/edgedetectiongpu:EdgeDetectionGpuApp",
@@ -20,6 +21,7 @@
     "//mediapipe/examples/ios/handtrackinggpu:HandTrackingGpuApp",
     "//mediapipe/examples/ios/objectdetectioncpu:ObjectDetectionCpuApp",
     "//mediapipe/examples/ios/objectdetectiongpu:ObjectDetectionGpuApp",
+    "//mediapipe/examples/ios/poseestimationgpu:PoseEstimationGpuApp",
     "//mediapipe/objc:mediapipe_framework_ios"
   ],
   "optionSet" : {
@@ -88,6 +90,8 @@
     "mediapipe/examples/ios/objectdetectioncpu/Base.lproj",
     "mediapipe/examples/ios/objectdetectiongpu",
     "mediapipe/examples/ios/objectdetectiongpu/Base.lproj",
+    "mediapipe/examples/ios/poseestimationgpu",
+    "mediapipe/examples/ios/poseestimationgpu/Base.lproj",
     "mediapipe/framework",
     "mediapipe/framework/deps",
     "mediapipe/framework/formats",

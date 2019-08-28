@@ -17,7 +17,8 @@
     "mediapipe/examples/ios/handdetectiongpu",
     "mediapipe/examples/ios/handtrackinggpu",
     "mediapipe/examples/ios/objectdetectioncpu",
-    "mediapipe/examples/ios/objectdetectiongpu"
+    "mediapipe/examples/ios/objectdetectiongpu",
+    "mediapipe/examples/ios/poseestimationgpu"
   ],
   "projectName" : "Mediapipe",
   "workspaceRoot" : "../.."

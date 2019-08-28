@@ -2,6 +2,10 @@
 
 Here are descriptions of the models used in the [example applications](../docs/examples.md).
 
+### Pose Estimation
+
+  * Posenet
+
 ### Object Detection
 For details on the models, see [here](object_detection_saved_model/README.md).
 
